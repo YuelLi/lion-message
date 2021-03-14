@@ -6,5 +6,10 @@
    <%= password_field_tag :password%>
    <%= submit_tag "Login"%>
 <%end%>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <span class="error"><%= flash[:alert] %></span>
+  </div>
+<% end %>
 <h5>if you dont have a account</h5>
 <%= button_to "Sign Up", '/users/new', method: :get%>

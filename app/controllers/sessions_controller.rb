@@ -9,6 +9,7 @@ skip_before_action :authorized, only: [:new, :create, :welcome]
        session[:user_id] = @user.id
        redirect_to '/welcome'
     else
+       flash[:alert] = "Wrong username or password"
        redirect_to '/login'
     end
   end
