@@ -2,7 +2,7 @@ class PostController < ApplicationController
   def show
     # user = User.find_by(id: session[:user_id])
     # @posts = user.posts
-    @posts = Post.where(user_id: session[:user_id])
+    @posts = User.find(session[:user_id]).posts
   end
 
   def new
@@ -10,7 +10,8 @@ class PostController < ApplicationController
 
   def create
     user = User.find_by(id: session[:user_id])
-    user.posts.create(:topic=>params[:topic],:department=>params[:department],:subject=>params[:subject],:body=>params[:body])
+    user.posts.create(:topic=>params[:topic],:department=>params[:department],
+                      :subject=>params[:subject],:body=>params[:body])
     redirect_to '/post/show'
   end
 

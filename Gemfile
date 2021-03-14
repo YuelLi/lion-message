@@ -34,6 +34,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'ZenTest'
+  gem  'rails-controller-testing'
 end
 
 group :development do
