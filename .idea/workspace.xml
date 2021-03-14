@@ -20,7 +20,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a197f521-da3c-4d76-9d2b-ba9f9f324c10" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.generators" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.rakeTasks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/post.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/post_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/helpers/post_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/post.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/create.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/delete.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/edit.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/new.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/show.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/post/update.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20210314065131_create_posts.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/helpers/post_helper_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/models/post_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/requests/post_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/create.html.erb_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/delete.html.erb_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/edit.html.erb_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/new.html.erb_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/show.html.erb_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/views/post/update.html.erb_spec.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/lion-message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lion-message.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/sessions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sessions/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +187,7 @@
       <workItem from="1615710521574" duration="1318000" />
       <workItem from="1615711843710" duration="8296000" />
       <workItem from="1615730399274" duration="15000" />
-      <workItem from="1615730415533" duration="4055000" />
+      <workItem from="1615730415533" duration="4430000" />
     </task>
     <servers />
   </component>
