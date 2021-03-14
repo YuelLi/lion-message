@@ -2,7 +2,18 @@ require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
   describe "GET /show" do
-    it "returns http success" do
+    before(:each) do
+      @user1 = User.create(username: 'yuankai', password: '123456')
+      @user2 = User.create(username: 'yuankai', password: '123456')
+      @p1 = posts.create()
+      @p2 = posts.create()
+      @p3 = posts.create()
+      @user1.posts<<@p1
+      @user1.posts<<@p2
+      @user2.posts<<@p3
+    end
+
+    it "show list the posts belong to the current user" do
       get "/post/show"
       expect(response).to have_http_status(:success)
     end

@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 skip_before_action :authorized, only: [:new, :create, :welcome]
   def new
+    if session[:user_id] != nil
+      redirect_to '/welcome'
+    end
   end
 
   def create
@@ -24,6 +27,7 @@ skip_before_action :authorized, only: [:new, :create, :welcome]
   end
 
   def welcome
+    redirect_to '/post/show'
   end
 
   def page_requires_login

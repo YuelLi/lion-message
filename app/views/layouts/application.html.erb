@@ -8,6 +8,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= javascript_pack_tag 'application' %>
+    <h1>LionMessage</h1>
+    <% if current_user %>
+      <h1>Username: <%= current_user.username %></h1>
+    <%end%>
   </head>
 
   <body>
