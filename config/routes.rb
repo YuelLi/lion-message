@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'post/show'
+  get 'post/new'
+  post 'post/create'
+  get 'post/edit'
+  get 'post/update'
+  get 'post/delete'
+  get 'post/index'
+  get 'post/new'
+  get 'post/create'
+  get 'post/edit'
+  get 'post/update'
+  get 'post/delete'
   resources :users, only: [:new, :create]
   get '/', to: 'sessions#welcome'
   get 'login', to: 'sessions#new'

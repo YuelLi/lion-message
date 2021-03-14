@@ -14,7 +14,8 @@ skip_before_action :authorized, only: [:new, :create, :welcome]
   end
 
   def logout
-    @user = nil
+    # @user = nil
+    session[:user_id] = nil
     redirect_to '/login'
   end
 

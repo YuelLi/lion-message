@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_070025) do
     t.string "topic"
     t.string "subject"
     t.string "body"
+    t.string "department"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
