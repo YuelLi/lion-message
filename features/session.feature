@@ -35,5 +35,5 @@ Scenario: sign out
   And I press "Login"
   Then I should be on the posts page
   And I should see "Yuankai"
-  And I follow "Logout"
+  And I go to logout
   Then I should be on the login page
