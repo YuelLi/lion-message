@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <head>
     <title>LionMessage</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,8 +9,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= javascript_pack_tag 'application' %>
-    <h1>LionMessage</h1>
     <% if current_user %>
+      <h1>LionMessage</h1>
       <h1>Username: <%= current_user.username %></h1>
     <%end%>
   </head>
