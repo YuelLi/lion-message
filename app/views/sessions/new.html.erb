@@ -1,16 +1,67 @@
-<h1>Login</h1>
-   <%= form_tag '/login' do %>
-   <%= label_tag :username%>
-   <%= text_field_tag :username %>
-   <%= label_tag :password%>
-   <%= password_field_tag :password%>
-   <%= submit_tag "Login"%>
-<%end%>
 <% if flash[:alert] %>
   <div class="alert alert-danger">
     <span class="error"><%= flash[:alert] %></span>
   </div>
 <% end %>
-<h5>if you dont have a account</h5>
-<%= button_to "Sign Up", '/users/new', method: :get%>
+<div id="loginModal" class="modal show" style="margin-top:100px;" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+<!--    <div class="modal-content">-->
+      <div align="center">
+        <!--        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <img src="/assets/logo.jpg"/>
+      </div>
+      <div class="modal-header">
+<!--        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <h1 class="text-center">Login</h1>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/login' ,({:class => 'form col-md-12 center-block'}) do %>
+          <div class="form-group">
+            <%#= label_tag :username%>
+            <%= text_field_tag :username,"", class: "form-control input-lg", placeholder: "username" %>
+          </div>
+          <div class="form-group">
+            <%= password_field_tag :password,"", class: "form-control input-lg",placeholder: "password"%>
+          </div>
+          <div class="form-group">
+            <%= submit_tag "Login", class: "btn btn-primary btn-lg btn-block"%>
+            <%= link_to '/users/new' do %>
+              <span class="pull-right">Register</span>
+            <% end %>
+            <span><a href="#">Need help?</a></span>
+          </div>
+        <%end%>
+<!--        </form>-->
+      </div>
+<!--      <div class="modal-footer">-->
+<!--        <div class="col-md-1accordion2">-->
+<!--          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>
+<!--<div class="col-md-12">-->
+<!--  <div class="container bootstrap snippets bootdey">-->
+<!--    <footer class="footer">-->
+<!--      <p>&copy; Company name 2015</p>-->
+<!--    </footer>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<h1>Login</h1>-->
+   <%#= form_tag '/login' do %>
+   <%#= label_tag :username%>
+   <%#= text_field_tag :username %>
+   <%#= label_tag :password%>
+   <%#= password_field_tag :password%>
+   <%#= submit_tag "Login"%>
+<%#end%>
+<%# if flash[:alert] %>
+<!--  <div class="alert alert-danger">-->
+<!--    <span class="error"><%#= flash[:alert] %></span>-->
+<!--  </div>-->
+<%# end %>
+<!--<h5>if you dont have a account</h5>-->
+<%#= button_to "Sign Up", '/users/new', method: :get%>
 
