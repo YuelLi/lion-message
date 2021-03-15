@@ -14,5 +14,5 @@ helper_method :logged_in?
 
     def authorized
         redirect_to '/login' unless logged_in?
-    end
+     end
 end
