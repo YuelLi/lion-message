@@ -21,6 +21,11 @@ Scenario: login with valid credentials
   And I should see "Yuankai"
   And I should not see "Minhe"
 
+# Scenario: logged in with session
+#   Given I am logged in as "Minhe"
+#   Then I should be on the posts page
+#   And I should see "Minhe"
+
 Scenario: sign out
   Given I am on the home page
   And I press "Login"
@@ -30,5 +35,5 @@ Scenario: sign out
   And I press "Login"
   Then I should be on the posts page
   And I should see "Yuankai"
-  And I press "Logout_layout"
+  And I follow "Logout"
   Then I should be on the login page
