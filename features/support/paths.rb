@@ -15,7 +15,8 @@ module NavigationHelpers
       
     when /^the login page$/ then '/login'
     when /^the home page$/ then '/'
-    when /^the welcome page$/ then '/welcome'
+    when /^the posts page$/ then '/post/show'
+    when /^the sign up page$/ then '/users/new'
       
     # when /^the details page for "(.*)"$/ then
     #   movie_id = Movie.find_by(title: $1).id

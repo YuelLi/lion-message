@@ -1,6 +1,6 @@
-Feature: user login
+Feature: user sign up
 
-  As a student, I can login to lion-message.
+  As a visitor, I can sign up an account.
   Also, I can see username.
 
 Background: having users in database
@@ -10,13 +10,13 @@ Background: having users in database
   | Minhe    | minhe1234       | student |
   | Yuankai  | yuankai1234     | student |
 
-Scenario: login with valid credentials
+Scenario: sign up an account
   Given I am on the home page
-  And I press "Login"
-  Then I should be on the login page
+  And I follow "Register"
+  Then I should be on the sign up page
   When I fill in "username" with "Yuankai"
   And I fill in "password" with "yuankai1234"
-  And I press "Login"
-  Then I should be on the welcome page
-  And I should see "Logged In, student Yuankai"
+  And I press "Create User"
+  Then I should be on the posts page
+  And I should see "Yuankai"
   And I should not see "Minhe"

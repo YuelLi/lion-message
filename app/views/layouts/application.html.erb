@@ -12,6 +12,10 @@
     <% if current_user %>
       <h1>LionMessage</h1>
       <h1>Username: <%= current_user.username %></h1>
+      <%= button_to "Logout_layout", '/logout', method: :get%>
+    <% else %>
+      <%= button_to "Login_layout", '/login', method: :get%>
+      <%= button_to "Signup_layout", '/users/new', method: :get%>
     <%end%>
   </head>
 
