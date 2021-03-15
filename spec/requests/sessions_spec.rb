@@ -1,32 +1,48 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
-  describe "GET /new" do
-    it "returns http success" do
-      get "/sessions/new"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /create" do
-    it "returns http success" do
-      get "/sessions/create"
-      expect(response).to have_http_status(:success)
-    end
+  before(:each) do
+    @user = User.create(username: 'yuankai', password: '123456')
   end
 
   describe "GET /login" do
-    it "returns http success" do
-      get "/sessions/login"
+    it "returns login page when the user has not logged in" do
+      get "/login"
       expect(response).to have_http_status(:success)
+    end
+
+    it "redirect to welcome when the user has already logged in" do
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user.id } }
+      get "/login"
+      expect(response).to redirect_to("/welcome")
     end
   end
 
-  describe "GET /welcome" do
-    it "returns http success" do
-      get "/sessions/welcome"
-      expect(response).to have_http_status(:success)
+  describe "POST /login" do
+    it "redirect to welcome when the user successfully logs in" do
+      post "/login", params: {username: 'yuankai', password: '123456'}
+      expect(response).to redirect_to("/welcome")
+    end
+
+    it "redirect to login when the user fails to log in" do
+      post "/login", params: {username: 'yuankai', password: '654321'}
+      expect(flash[:alert]).to eq("Wrong username or password")
+      expect(response).to redirect_to("/login")
     end
   end
+  #
+  # describe "GET /login" do
+  #   it "returns http success" do
+  #     get "/sessions/login"
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe "GET /welcome" do
+  #   it "returns http success" do
+  #     get "/sessions/welcome"
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
 end

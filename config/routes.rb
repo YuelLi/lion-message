@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout'
   get 'welcome', to: 'sessions#welcome'
   get 'authorized', to: 'sessions#page_requires_login'
+  post 'users/create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
