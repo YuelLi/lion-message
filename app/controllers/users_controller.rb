@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 skip_before_action :authorized, only: [:new, :create]
   def new
-    @user = User.new
   end
 
   def create
-    @user = User.create(params.require(:user).permit(:username,:password))
+    @user = User.create(username: params[:username],password: params[:password])
     @user.role= 'student'
     @user.save
     session[:user_id] = @user.id
