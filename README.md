@@ -39,7 +39,7 @@ The whole folder `lion-message` is the source file of our Saas prototype.
 * Create posts
 
 ## Heroku Deployment Link
-[Try Lion Message!!!]([dry-dawn-64360.herokuapp.com](https://dry-dawn-64360.herokuapp.com/))
+[Try Lion Message!!!](http://dry-dawn-64360.herokuapp.com)
 
 ## Reference
 * [Webpacker Installation](https://yarnpkg.com/en/docs/install).
