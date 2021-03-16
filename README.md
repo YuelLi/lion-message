@@ -15,7 +15,7 @@ It is a final project of COMSW4156 Spring 2021.
       rails db:migrate RAILS_ENV=development
 
 ## User Stories
-All the cucumber files is under `lion-message/features`
+All the cucumber files are under `lion-message/features`
 * If the user has not logged in, he can only access to login and signup page.
     * GET ```/users/new```: show the sign up page.
     * POST ```/users/create```: given the username and password, create a user account.
@@ -28,10 +28,10 @@ All the cucumber files is under `lion-message/features`
     * POST ```/post/create```: given the post parameters, create a new post which belongs to the current user.
 
 ## Unit Test
-All the Rspec files is under `lion-message/spec`
+All the Rspec files are under `lion-message/spec`
 
 ## SaaS Prototype & Features
-The whole folder is the source file of our Saas prototype.
+The whole folder `lion-message` is the source file of our Saas prototype.
 ### Features:
 * Sign up
 * Login
@@ -39,7 +39,7 @@ The whole folder is the source file of our Saas prototype.
 * Create posts
 
 ## Heroku Deployment Link
-[Try Lion Message!!!](dry-dawn-64360.herokuapp.com)
+[Try Lion Message!!!]([dry-dawn-64360.herokuapp.com](https://dry-dawn-64360.herokuapp.com/))
 
 ## Reference
 * [Webpacker Installation](https://yarnpkg.com/en/docs/install).
