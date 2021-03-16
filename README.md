@@ -1,15 +1,14 @@
-# Lion Message: COMSW4156 Project
+# Lion Message
+It is a final project of COMSW4156 Spring 2021.
 ## Team Members
 * Yuankai Xu yx2622
 * Yu Li yl4736
 * Minhe Zhang mz2864
 * Yen-Lin Chen yc3936
-## Running Instructios
-1. Install yarn & WebPacker
-    * [The tutorial we used](https://yarnpkg.com/en/docs/install).
-2. Basic
+## Running Instructions
+1. Install yarn & WebPacker: [The tutorial we used](https://yarnpkg.com/en/docs/install).
+2. Install Gems
 
-      cd lion-message \
       bundle install --without production
 3. Database
 
