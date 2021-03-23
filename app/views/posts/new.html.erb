@@ -7,7 +7,7 @@
         <div class="panel-heading">Your Posts</div>
 
         <div style="padding: 25px">
-          <%= form_tag '/post/create', :class => "form-horizontal center" do %>
+          <%= form_tag posts_path, :class => "form-horizontal center" do %>
             <div class="form-group">
               <%= label_tag :topic %>
               <%= text_field_tag :topic,"" , class: "form-control" %>

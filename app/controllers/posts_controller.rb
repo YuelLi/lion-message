@@ -1,8 +1,13 @@
-class PostController < ApplicationController
-  def show
+class PostsController < ApplicationController
+  def index
     # user = User.find_by(id: session[:user_id])
     # @posts = user.posts
-    @posts = User.find(session[:user_id]).posts
+    current_user = User.find(session[:user_id])
+    if current_user.role == "student"
+      @posts = current_user.posts
+    else
+      @posts = Post.where(:department => current_user.role)
+    end
   end
 
   def new
@@ -12,7 +17,7 @@ class PostController < ApplicationController
     user = User.find_by(id: session[:user_id])
     user.posts.create(:topic=>params[:topic],:department=>params[:department],
                       :subject=>params[:subject],:body=>params[:body])
-    redirect_to '/post/show'
+    redirect_to posts_path
   end
 
   def edit

@@ -27,7 +27,8 @@ skip_before_action :authorized, only: [:new, :create, :welcome]
   end
 
   def welcome
-    redirect_to '/post/show'
+    # redirect_to '/posts/show'
+    redirect_to posts_path
   end
 
   def page_requires_login

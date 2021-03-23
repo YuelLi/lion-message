@@ -13,3 +13,12 @@ users.each do |user|
   User.create!(user)
 end
 
+departments = [{:name => "Computer Science"},{:name => "Electrical Engineering"}]
+
+users.each do |user|
+  User.create!(user)
+end
+
+departments.each do |department|
+  Department.create!(department)
+end
