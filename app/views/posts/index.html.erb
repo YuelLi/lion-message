@@ -6,21 +6,30 @@
         <table class="table table-striped">
           <thead>
             <tr class="bg-info">
-              <th>#</th>
+<!--              <th>#</th>-->
               <th>Topic</th>
-              <th>Department</th>
+              <th>
+                <%= link_to "Department", posts_path({:post_content => @post_content, :sort => "department"}),id: "release_date_header",
+                            class: (params[:sort]=='department'?'text-warning':'')%>
+              </th>
               <th>Subject</th>
-              <th>Body</th>
+              <th>
+                <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
+                            class: (params[:sort]=='create_time'?'text-warning':'')%>
+              </th>
             </tr>
           </thead>
           <tbody>
             <% @posts.each do |post| -%>
               <tr>
-                <th><%= post.id %></th>
+<!--                <th><%#= post.id %></th>-->
                 <th><%= post.topic %></th>
                 <th><%= post.department %></th>
                 <th><%= post.subject %></th>
-                <th><%= post.body %></th>
+                <th>
+                  <div style="float:left;"><%= post.created_at%></div>
+                  <%= button_to "Detail", post_path(post), method: :get, style: "float:right;" %>
+                </th>
               </tr>
             <% end %>
           </tbody>

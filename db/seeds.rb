@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-users = [{:username => 'yuankai', :password => '123456', :role => "student"}]
+users = [{:username => 'yuankai', :password => '123456', :role => "student", :department => "Computer Science"}]
 
 users.each do |user|
   User.create!(user)
 end
 
-departments = [{:name => "Computer Science"},{:name => "Electrical Engineering"}]
+departments = [{:name => "Computer Science"},{:name => "Electrical Engineering"},{:name => "Columbia Finance"},{:name => "ISSO"}]
 
 users.each do |user|
   User.create!(user)

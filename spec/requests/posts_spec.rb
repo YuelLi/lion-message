@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "Posts", type: :request do
 
   before(:each) do
-    @user1 = User.create(username: 'yuankai', password: '123456',role: "student")
-    @user2 = User.create(username: 'yk', password: '123456', role: "Computer Science")
+    @user1 = User.create(username: 'yuankai', password: '123456',role: "student", department: "Computer Science")
+    @user2 = User.create(username: 'yk', password: '123456', role: "faculty", department: "Computer Science")
     @p1 = Post.create()
     @p2 = Post.create()
     @p3 = Post.create(department: "Computer Science")
