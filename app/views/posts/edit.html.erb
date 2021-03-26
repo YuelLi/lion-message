@@ -1,0 +1,46 @@
+<div class="container">
+  <% if flash[:alert] %>
+    <div class="alert alert-danger"  style="text-align: center;">
+      <span class="error"><%= flash[:alert] %></span>
+    </div>
+  <% end %>
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Edit No.<%= @post.id %> post</div>
+        <table class="table table-striped">
+          <thead>
+          <tr class="bg-info">
+            <th>Topic</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th>Create time </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th><%= @post.topic %></th>
+            <th><%= @post.department %></th>
+            <th><%= @post.subject %></th>
+            <th><%= @post.created_at%>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">Your Posts</div>
+        <div style="padding: 25px">
+          <%= form_tag post_path(@post),:method => :put, :class => "form-horizontal center" do %>
+            <div class="form-group">
+              <%= label_tag :body %>
+              <%= text_area_tag :body,@post.body , class: "form-control" %>
+            </div>
+            <%= submit_tag "Submit", :class => "btn btn-primary" %>
+            <%= link_to "Cancel", post_path(@post), :class => "btn btn-primary" %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

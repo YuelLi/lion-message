@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+      <div class="panel panel-primary">
+        <div class="panel-heading">No.<%= @post.id %> post and replies</div>
+        <table class="table table-striped">
+          <thead>
+          <tr class="bg-info">
+            <th>Topic</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th>Create time </th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><%= @post.topic %></th>
+              <th><%= @post.department %></th>
+              <th><%= @post.subject %></th>
+              <th><%= @post.created_at%>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-striped">
+          <thead>
+          <tr class="bg-info">
+            <th style="text-align: center;">Post body</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th style="word-break:break-all;"><%= @post.body %></th>
+          </tr>
+          </tbody>
+        </table>
+        <table class="table table-striped">
+          <thead>
+          <tr class="bg-info">
+            <th style="text-align: center;">Following replies</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th></th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= button_to "Edit post body", edit_post_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
+      <%= button_to "Back", posts_path, method: :get, :style => "margin-left: 20px;", :class => 'btn btn-primary'%>
+    </div>
+  </div>
+</div>

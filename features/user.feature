@@ -16,7 +16,7 @@ Scenario: sign up an account
   Then I should be on the sign up page
   When I fill in "username" with "Yuankai"
   And I fill in "password" with "yuankai1234"
-  And I press "Create User"
+  And I press "submit"
   Then I should be on the posts page
   And I should see "Yuankai"
   And I should not see "Minhe"

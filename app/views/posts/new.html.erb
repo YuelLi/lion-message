@@ -1,0 +1,70 @@
+<div class="container">
+  <% if flash[:alert] %>
+    <div class="alert alert-danger"  style="text-align: center;">
+      <span class="error"><%= flash[:alert] %></span>
+    </div>
+  <% end %>
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+
+      <div class="panel panel-primary">
+
+        <div class="panel-heading">Your Posts</div>
+
+        <div style="padding: 25px">
+          <%= form_tag posts_path, :class => "form-horizontal center" do %>
+            <div class="form-group">
+              <%= label_tag :topic %>
+              <%= select_tag "topic", raw("<option></option>
+              <option>Course</option>
+              <option>Finance</option>
+              <option>Visa</option>"), {:class => "form-control" }%>
+            </div>
+            <div class="form-group">
+              <%= label_tag :department %>
+              <%= select_tag "department", options_from_collection_for_select(@departments, "name", "name",""), {:include_blank => '', :class => "form-control" }%>
+            </div>
+            <div class="form-group">
+              <%= label_tag :subject %>
+              <%= text_field_tag :subject,"" , class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= label_tag :body %>
+              <%= text_area_tag :body,"" , class: "form-control" %>
+            </div>
+            <%= submit_tag "Submit", :class => "btn btn-primary" %>
+            <%= link_to "Cancel", posts_path, :class => "btn btn-primary" %>
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$("#topic").change(function() {
+    if ($(this).data('options') === undefined) {
+        /*Taking an array of all options-2 and kind of embedding it on the select1*/
+        $(this).data('options', $('#department option').clone());
+    }
+    var id = $(this).val();
+    var department_name;
+    switch(id) {
+        case "":
+            department_name = "";
+            break;
+        case "Course":
+            department_name = "<%= @user_department %>"
+            break;
+        case "Finance":
+            department_name = "Columbia Finance"
+            break;
+        case "Visa":
+            department_name = "ISSO"
+            break;
+    }
+    $("#department").val(department_name);
+
+});
+</script>

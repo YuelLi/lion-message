@@ -15,9 +15,9 @@ module NavigationHelpers
       
     when /^the login page$/ then '/login'
     when /^the home page$/ then '/'
-    when /^the posts page$/ then '/post/show'
+    when /^the posts page$/ then posts_path
     when /^the sign up page$/ then '/users/new'
-    when /^the create post page$/ then '/post/new'
+    when /^the create post page$/ then new_post_path
     when /^logout$/ then '/logout'
       
     # when /^the details page for "(.*)"$/ then
