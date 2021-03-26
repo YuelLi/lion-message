@@ -9,10 +9,10 @@ It is a final project of COMSW4156 Spring 2021.
 1. Install yarn & WebPacker: [The tutorial we used](https://yarnpkg.com/en/docs/install).
 2. Install Gems
 
-      bundle install --without production
+      `bundle install --without production`
 3. Database
 
-      rails db:migrate RAILS_ENV=development
+      `rails db:migrate RAILS_ENV=development`
 
 ## User Stories
 All the cucumber files are under `lion-message/features`
@@ -44,3 +44,32 @@ The whole folder `lion-message` is the source file of our Saas prototype.
 ## Reference
 * [Webpacker Installation](https://yarnpkg.com/en/docs/install).
 * [Authentication Guide with Ruby on Rails](https://levelup.gitconnected.com/simple-authentication-guide-with-ruby-on-rails-16a6255f0be8).
+
+## Iteration 2
+
+### Faculty Features
+
+* Login and logout
+
+### Posts
+
+* Sorting & filtering
+* Topic and department mapping
+* Status attribute
+
+### Replies
+
+* Model
+* View (Ajax or new page)
+* Controller
+
+### Test
+
+## Iteration 3
+
+### Notification
+* Updating email to students
+
+### Statistic
+
+### Evaluation
