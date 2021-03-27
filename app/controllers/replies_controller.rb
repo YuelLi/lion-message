@@ -3,6 +3,12 @@ class RepliesController < ApplicationController
   def index
     @post = Post.find params[:post_id]
     @replies = Reply.where(:post_id => @post)
+    @user_id_to_username = {}
+    @replies.each do |reply|
+      user = User.find reply.user_id
+      username = user.username
+      @user_id_to_username[reply.user_id] = username
+    end
   end
 
   def create
@@ -14,7 +20,7 @@ class RepliesController < ApplicationController
       @reply = @post.replies.build(:content => params[:content])
       @reply.user = current_user
       @reply.save
-      redirect_to post_path(@post)
+      redirect_to post_replies_path(@post)
     end
   end
   

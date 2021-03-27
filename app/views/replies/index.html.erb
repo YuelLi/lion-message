@@ -14,9 +14,9 @@
           <tbody>
             <% @replies.each do |reply| %>
             <tr>
-              <th> <%= reply.user_id%> </th>
-              <th> <%= reply.content%> </th>
-              <th> <%= reply.created_at%> </th>
+              <th> <%= @user_id_to_username[reply.user_id] %> </th>
+              <th> <%= reply.content %> </th>
+              <th> <%= reply.created_at %> </th>
             </tr>
             <% end %>
           </tbody>
