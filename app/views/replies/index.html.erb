@@ -9,6 +9,7 @@
               <th style="text-align: center;">User ID</th>
               <th style="text-align: center;">Content</th>
               <th style="text-align: center;">Time</th>
+              <th style="text-align: center;">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -17,6 +18,13 @@
               <th> <%= @user_id_to_username[reply.user_id] %> </th>
               <th> <%= reply.content %> </th>
               <th> <%= reply.created_at %> </th>
+              <th>
+                <% if current_user.id == reply.user_id %>
+                <%= button_to "Edit", post_path(@post), method: :get, style: "float:right;" %>
+                <% else %>
+                <% %>
+                <% end %>
+              </th>
             </tr>
             <% end %>
           </tbody>
