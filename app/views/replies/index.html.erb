@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+      <div class="panel panel-primary">
+      <div class="panel-heading"><%= current_user.username %>'s replies</div>
+        <table class="table table-striped">
+          <thead>
+            <tr class="bg-info">
+              <th style="text-align: center;">User ID</th>
+              <th style="text-align: center;">Content</th>
+              <th style="text-align: center;">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @replies.each do |reply| %>
+            <tr>
+              <th> <%= reply.user_id%> </th>
+              <th> <%= reply.content%> </th>
+              <th> <%= reply.created_at%> </th>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>      
+        <%= button_to "Send Reply", new_post_reply_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
+        <%= button_to "Back", post_path(@post), method: :get, :style => "margin-left: 20px;", :class => 'btn btn-primary'%>
+      </div>
+    </div>
+  </div>
+</div>
