@@ -47,6 +47,8 @@
           </tbody>
         </table>
       </div>
+      <%= button_to "Send Reply", new_post_reply_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
+      <%= button_to "View Replies", post_replies_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
       <%= button_to "Edit post body", edit_post_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
       <%= button_to "Back", posts_path, method: :get, :style => "margin-left: 20px;", :class => 'btn btn-primary'%>
     </div>

@@ -22,3 +22,4 @@ end
 departments.each do |department|
   Department.create!(department)
 end
+
