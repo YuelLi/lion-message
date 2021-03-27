@@ -2,7 +2,7 @@
   <div class="row align-items-center">
     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
       <div class="panel panel-primary">
-      <div class="panel-heading"><%= current_user.username %>'s replies</div>
+        <div class="panel-heading"><%= current_user.username %>'s replies</div>
         <table class="table table-striped">
           <thead>
             <tr class="bg-info">
@@ -20,9 +20,9 @@
               <th> <%= reply.created_at %> </th>
               <th>
                 <% if current_user.id == reply.user_id %>
-                <%= button_to "Edit", post_path(@post), method: :get, style: "float:right;" %>
+                  <%= button_to "Edit", edit_post_reply_path(@post, reply), method: :get, style: "float:right;" %>
                 <% else %>
-                <% %>
+                  <% %>
                 <% end %>
               </th>
             </tr>

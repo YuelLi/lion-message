@@ -27,4 +27,25 @@ class RepliesController < ApplicationController
   def new
     @post = Post.find params[:post_id]
   end
+
+  def edit
+    post_id = params[:post_id]
+    reply_id = params[:id]
+    @post = Post.find(post_id)
+    @reply = Reply.find(reply_id)
+    @replies, @user_id_to_username = Post.usernames_by_reply(@post)
+  end
+
+  def update
+    @post = Post.find params[:post_id]
+    @reply = Reply.find params[:id]
+    if params[:content] == nil or params[:content] == ""
+      flash[:alert] = "Content must be filled."
+      redirect_to edit_post_reply_path(@post, @reply)
+    else
+      @reply.update(content: params[:content])
+      redirect_to post_replies_path(@post)
+    end
+  end
+
 end

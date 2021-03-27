@@ -48,6 +48,7 @@ class PostsController < ApplicationController
   def show
     id = params[:id]
     @post = Post.find(id)
+    @replies, @user_id_to_username = Post.usernames_by_reply(@post)
   end
 
   def edit
