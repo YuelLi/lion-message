@@ -2,19 +2,25 @@
   <div class="row align-items-center">
     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
       <div class="panel panel-primary">
-        <div class="panel-heading"><%= current_user.username %>'s Posts</div>
+        <div class="panel-heading">
+        <% if current_user.role == "student" %>
+        <%= current_user.username %>'s Posts
+        <% else %>
+        <%= current_user.department %> Posts
+        <% end %>
+        </div>
         <table class="table table-striped">
           <thead>
             <tr class="bg-info">
               <th>Topic</th>
               <th>
                 <%= link_to "Department", posts_path({:post_content => @post_content, :sort => "department"}),id: "release_date_header",
-                            class: (params[:sort]=='department'?'text-warning':'')%>
+                            class: (params[:sort]=='department'? 'text-warning': '')%>
               </th>
               <th>Subject</th>
               <th>
                 <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
-                            class: (params[:sort]=='create_time'?'text-warning':'')%>
+                            class: (params[:sort]=='create_time'? 'text-warning': '')%>
               </th>
             </tr>
           </thead>
@@ -33,7 +39,9 @@
           </tbody>
         </table>
       </div>
+      <% if current_user.role == "student" %>
       <%= button_to "Create a new posts", new_post_path, method: :get, :class => 'btn btn-primary'%>
+      <% end %>
     </div>
   </div>
 </div>

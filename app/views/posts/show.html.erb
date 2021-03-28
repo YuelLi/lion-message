@@ -66,7 +66,9 @@
       </div>
       <%= button_to "Send Reply", new_post_reply_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
       <%= button_to "Replies Detail", post_replies_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
+      <% if current_user.role == 'student' %>
       <%= button_to "Edit post body", edit_post_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
+      <% end %>
       <%= button_to "Back", posts_path, method: :get, :style => "margin-left: 20px;", :class => 'btn btn-primary'%>
     </div>
   </div>
