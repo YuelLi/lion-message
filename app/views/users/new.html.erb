@@ -20,7 +20,10 @@
           <%= password_field_tag :password,"", class: "form-control input-lg",placeholder: "password"%>
         </div>
         <div class="form-group">
-          <%= select_tag "department", options_from_collection_for_select(@departments, "name", "name",""), {:include_blank => '', :class => "form-control" }%>
+          <%= email_field_tag :email,"", class: "form-control input-lg",placeholder: "email"%>
+        </div>
+        <div class="form-group">
+          <%= select_tag "department", options_from_collection_for_select(@departments, "name", "name","Computer Science"), {:class => "form-control input-lg"}%>
         </div>
         <div class="form-group">
           <%= submit_tag "submit", class: "btn btn-primary btn-lg btn-block"%>

@@ -10,24 +10,28 @@
 users = [{
           :username => 'yuankai', 
           :password => '123456', 
+          :email => 'yk@columbia.edu',
           :role => "student", 
           :department => "Computer Science"
           },
           {
           :username => 'zhangsan',
           :password => '123456',
+          :email => 'zs@columbia.edu',
           :role => 'student',
           :department => 'Electrical Engineering'
           },
           {
             :username => 'cs1',
             :password => '123456',
+            :email => 'cs1@columbia.edu',
             :role => 'faculty',
             :department => 'Computer Science'
           },
           {
             :username => 'ee1',
             :password => '123456',
+            :email => 'ee1@columbia.edu',
             :role => 'faculty',
             :department => 'Electrical Engineering'
           }
