@@ -54,6 +54,10 @@ class PostsController < ApplicationController
   def edit
     id = params[:id]
     @post = Post.find(id)
+    if @post.user != current_user
+      flash.now[:error] = 'unauthorized access!'
+      redirect_to posts_path
+    end 
   end
 
   def update

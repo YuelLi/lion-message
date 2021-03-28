@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # get 'posts/delete'
   # get 'posts/index'
   resources :users, only: [:new, :create]
+  get 'user', to: 'users#show'
   get '/', to: 'sessions#welcome'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
