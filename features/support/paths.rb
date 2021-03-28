@@ -19,7 +19,10 @@ module NavigationHelpers
     when /^the sign up page$/ then '/users/new'
     when /^the create post page$/ then new_post_path
     when /^logout$/ then '/logout'
-      
+    when /^the post detail page$/ then '/posts/2?'
+    when /^the post reply page$/ then '/posts/2/replies/new?'
+    when /^the user reply page$/ then '/posts/2/replies'
+
     # when /^the details page for "(.*)"$/ then
     #   movie_id = Movie.find_by(title: $1).id
     #   movie_path(movie_id)
