@@ -2,9 +2,6 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :replies
   def self.like_search(post_list,search)
-    # if ratings_list is an array such as ['G', 'PG', 'R'], retrieve all
-    #  movies with those ratings
-    # if ratings_list is nil, retrieve ALL movies
     post_list.where("topic LIKE '%#{search}%' OR department LIKE '%#{search}%' OR subject LIKE '%#{search}%'
                     OR body LIKE '%#{search}%'")
   end
@@ -12,7 +9,7 @@ class Post < ApplicationRecord
   # Returns replies and a hash[user_id => username]
   # of the current post.
   def self.usernames_by_reply(post)
-    replies = Reply.where(:post_id => post.id)
+    replies = Reply.where(:post_id => post.id).order(created_at: :desc)
     user_id_to_username = {}
     replies.each do |reply|
       user = User.find reply.user_id

@@ -18,6 +18,10 @@ When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
+When /^(?:|I )select "([^"]*)" with "([^"]*)"$/ do |field, value|
+  select value, from: field
+end
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
