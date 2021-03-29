@@ -30,7 +30,7 @@ Scenario: login and reply to a posts
   Then I should be on the replies page
   And I should see "Hi, this is a testing reply message"
 
-Scenario: login and reply to a posts, and the edit the reply message
+Scenario: login and reply to a posts, and edit the reply message
   Given I am on the home page
   And I press "Login"
   Then I should be on the login page
