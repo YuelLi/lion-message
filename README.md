@@ -47,10 +47,13 @@ The whole folder `lion-message` is the source file of our Saas prototype.
 
 ## Iteration 2
 
+
+### User
+* User profile 
+
 ### Faculty Features
 
 * Login and logout
-
 ### Posts
 
 * Sorting & filtering
