@@ -67,7 +67,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li><a href="#">Hi, <%= current_user.username %></a></li>
+            <li><a href="/user">Hi, <%= current_user.username %></a></li>
             <li><%= link_to 'Logout', '/logout' %></li>
           <%else%>
             <li><%= link_to 'Sign Up', '/users/new' %></li>

@@ -25,6 +25,25 @@ skip_before_action :authorized, only: [:new, :create]
     end
   end
 
+  def update
+    begin
+      if params[:email].split("@")[1]!="columbia.edu"
+        flash[:alert] = "Please use columbia.edu email to register."
+        redirect_to '/user'
+      else
+        @user = current_user
+        @user.email= params[:email]
+        @user.department = params[:department]
+        @user.save
+        flash[:success] = "Successfully updated"
+        redirect_to '/user'
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash[:alert] = "Email existed"
+      redirect_to '/user'
+    end
+  end
   def show
+    @departments = Department.all()
   end 
 end
