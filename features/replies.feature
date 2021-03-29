@@ -29,3 +29,23 @@ Scenario: login and reply to a posts
   And I press "Send"
   Then I should be on the replies page
   And I should see "Hi, this is a testing reply message"
+
+Scenario: login and reply to a posts, and the edit the reply message
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "Yuankai"
+  And I fill in "password" with "yuankai1234"
+  And I press "Login"
+  Then I should be on the posts page
+  And I press "Detail"
+  And I press "Send Reply"
+  And I fill in "Content" with "Hi, this is my original reply message"
+  And I press "Send"
+  Then I should be on the replies page
+  And I should see "Hi, this is my original reply message"
+  And I press "Edit"
+  And I fill in "Content" with "Hi, this is a my edited reply message"
+  And I press "Submit"
+  Then I should be on the replies page
+  And I should see "Hi, this is a my edited reply message"
