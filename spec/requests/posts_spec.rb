@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe "Posts", type: :request do
 
   before(:each) do
+    @department1 = Department.create(name: "Computer Science")
+    @department2 = Department.create(name: "Electrical Engineering")
     @user1 = User.create(username: 'yuankai', password: '123456',role: "student", department: "Computer Science")
     @user2 = User.create(username: 'yk', password: '123456', role: "faculty", department: "Computer Science")
     @p1 = Post.create(subject: "Course problem", department: "Electrical Engineering",body:"Anything")
@@ -52,6 +54,7 @@ RSpec.describe "Posts", type: :request do
     it "returns http success" do
       get "/posts/new"
       expect(response).to have_http_status(:success)
+      expect(assigns(:departments)).to eq([@department1.name,@department2.name])
     end
   end
 

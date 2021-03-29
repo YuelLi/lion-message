@@ -15,7 +15,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
+  fill_in(field, :with => value, visible: false)
 end
 
 When /^(?:|I )select "([^"]*)" with "([^"]*)"$/ do |field, value|
@@ -23,7 +23,7 @@ When /^(?:|I )select "([^"]*)" with "([^"]*)"$/ do |field, value|
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
-  click_button(button)
+  click_button(button, visible: false)
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
@@ -69,6 +69,11 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   else
     assert page.has_no_xpath?('//*', :text => regexp)
   end
+end
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  match = page.body =~ /[\s\S]*#{e1}[\s\S]*#{e2}/
+  expect(match).to eq 0
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
