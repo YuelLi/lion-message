@@ -51,6 +51,10 @@ class PostsController < ApplicationController
   def show
     id = params[:id]
     @post = Post.find(id)
+    if @post.user != current_user
+      flash[:error] = 'unauthorized access!'
+      redirect_to posts_path
+    end
     @replies, @user_id_to_username = Post.usernames_by_reply(@post)
   end
 
@@ -58,7 +62,7 @@ class PostsController < ApplicationController
     id = params[:id]
     @post = Post.find(id)
     if @post.user != current_user
-      flash.now[:error] = 'unauthorized access!'
+      flash[:error] = 'unauthorized access!'
       redirect_to posts_path
     end 
   end
