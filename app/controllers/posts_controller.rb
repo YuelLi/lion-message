@@ -15,19 +15,22 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(:department => current_user.department)
     end
+    if params[:post_content] != nil && params[:post_content] != ""
+      @posts = Post.like_search(@posts,params[:post_content])
+    end
     if params[:sort]=='department'
       @posts = @posts.order(:department, created_at: :desc)
     else
       @posts = @posts.order(created_at: :desc)
     end
-    if params[:post_content] != nil && params[:post_content] != ""
-      @posts = Post.like_search(@posts,params[:post_content])
-    end
     @post_content = params[:post_content]
   end
 
   def new
-    @departments = Department.all()
+    @departments = []
+    Department.all().each do |department|
+      @departments << department.name
+    end
     @user_department = User.find(session[:user_id]).department
   end
 

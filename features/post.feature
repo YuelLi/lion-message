@@ -32,7 +32,7 @@ Scenario: login and see my posts
   And I should not see "Too poor."
   And I should not see "More sushi."
 
-Scenario: login and create a posts
+Scenario: login and create a post
   Given I am on the home page
   And I press "Login"
   Then I should be on the login page
@@ -42,11 +42,29 @@ Scenario: login and create a posts
   Then I should be on the posts page
   And I press "Create a new post"
   Then I should be on the create post page
-  And I fill in "topic" with "finance"
-  And I fill in "department" with "d"
+  And I select "topic" with "Finance"
+  And I select "department" with "ISSO"
   And I fill in "subject" with "s"
   And I fill in "body" with "I am too rich."
   And I press "Submit"
   Then I should be on the posts page
-  And I should see "finance"
+  And I should see "Columbia Finance"
   And I should see "I am too rich."
+
+Scenario: login and create a post with empty body
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "Yuankai"
+  And I fill in "password" with "yuankai1234"
+  And I press "Login"
+  Then I should be on the posts page
+  And I press "Create a new post"
+  Then I should be on the create post page
+  And I select "topic" with "Finance"
+  And I select "department" with "Computer Science"
+  And I fill in "subject" with "s"
+  And I fill in "body" with ""
+  And I press "Submit"
+  Then I should be on the create post page
+  And I should see "Department, Subject and Body must be filled."
