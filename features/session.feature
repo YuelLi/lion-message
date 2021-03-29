@@ -20,6 +20,8 @@ Scenario: login with valid credentials
   Then I should be on the posts page
   And I should see "Yuankai"
   And I should not see "Minhe"
+  Then I go to the login page
+  And I should be on the posts page
 
 # Scenario: logged in with session
 #   Given I am logged in as "Minhe"

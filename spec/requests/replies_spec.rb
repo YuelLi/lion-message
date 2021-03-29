@@ -17,6 +17,16 @@ RSpec.describe "Reply", type: :request do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user1.id } }
   end
 
+  describe "GET /index" do
+    it "returns http success" do
+      get post_replies_path(@p1)
+      expect(response).to have_http_status(:success)
+      expect(assigns[:post]).to eq(@p1)
+      expect(assigns[:replies]).to eq([@r1])
+      expect(assigns[:user_id_to_username]).to eq({@user1.id => @user1.username})
+    end
+  end
+
   describe "GET /new" do
     it "returns http success" do
       get new_post_reply_path(@p1)

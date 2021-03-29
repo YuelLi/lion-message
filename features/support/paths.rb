@@ -20,7 +20,9 @@ module NavigationHelpers
     when /^the create post page$/ then new_post_path
     when /^logout$/ then '/logout'
     when /^user$/ then '/user'
-    when /^the replies page$/ then '/posts/2/replies'
+    when /^the new reply page for post subject "(.*)"$/ then
+      post = Post.where(subject: $1).take
+      new_post_reply_path(post)
     when /^the replies page for post subject "(.*)"$/ then
       post = Post.where(subject: $1).take
       '/posts/'+post.id.to_s+'/replies'

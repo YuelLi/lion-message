@@ -29,6 +29,22 @@ Scenario: sign up an account
   And I should see "Yuankai"
   And I should not see "Minhe"
 
+Scenario: sign up failures
+  Given I am on the home page
+  And I follow "Register"
+  Then I should be on the sign up page
+  When I fill in "username" with "Yuankai"
+  And I fill in "password" with "yuankai1234"
+  And I fill in "email" with "yk@gmail.com"
+  And I press "submit"
+  Then I should be on the sign up page
+  And I should see "Please use columbia.edu email to register."
+  When I fill in "username" with "Minhe"
+  And I fill in "password" with "Minhe1234"
+  And I fill in "email" with "mh@columbia.edu"
+  And I press "submit"
+  And I should see "Username or email existed"
+
 Scenario: login and click user page 
   Given I am on the home page
   And I press "Login"
@@ -40,6 +56,12 @@ Scenario: login and click user page
   And I should see "Yu"
   And I go to user
   And I should see "Yu"
+  Then I fill in "email" with "mh@columbia.edu"
+  And I press "Save"
+  And I should see "Email existed"
+  Then I fill in "email" with "yl4736@gamil.com"
+  And I press "Save"
+  And I should see "Please use columbia.edu email to register."
   And I fill in "email" with "yl4736@columbia.edu"
   And I select "department" with "Electrical Engineering"
   And I press "Save"

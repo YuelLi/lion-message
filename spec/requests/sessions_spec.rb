@@ -30,19 +30,21 @@ RSpec.describe "Sessions", type: :request do
       expect(response).to redirect_to("/login")
     end
   end
-  #
-  # describe "GET /login" do
-  #   it "returns http success" do
-  #     get "/sessions/login"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-  #
-  # describe "GET /welcome" do
-  #   it "returns http success" do
-  #     get "/sessions/welcome"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+
+  describe "GET /logout" do
+    it "returns http success" do
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user.id } }
+      get "/logout"
+      expect(response).to redirect_to("/login")
+    end
+  end
+
+  describe "GET /welcome" do
+    it "redirect to post page if log in" do
+      get "/welcome"
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user.id } }
+      expect(response).to redirect_to(posts_path)
+    end
+  end
 
 end
