@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   before(:each) do
-    @user = User.create(username: 'yuankai', password: '123456')
+    @user = User.create(username: 'yuankai', password: '123456',email: "yk@columbia.edu")
+    @user2 = User.create(username: 'yk', password: '123456',email: "anotheryk@columbia.edu")
   end
 
   describe "GET /new" do
@@ -39,7 +40,8 @@ RSpec.describe "Users", type: :request do
       post "/users/create", params: {username: username, password:password, email:email}
       expect(flash[:alert]).to eq("Username or email existed")
       expect(response).to redirect_to("/users/new")  
-    end 
+    end
+
   end
 
   describe "GET /user" do
@@ -71,6 +73,13 @@ RSpec.describe "Users", type: :request do
         allow_any_instance_of(ActionDispatch::Request).to receive(:session) {{ user_id: @user.id }}
         post "/user", params: {email:"yk@gmail.com", department: 'Computer Science'}
         expect(flash[:alert]).to eq("Please use columbia.edu email to register.")
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "redirect to user with alert if existed email filled in" do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session) {{ user_id: @user.id }}
+        post "/user", params: {email:"anotheryk@columbia.edu", department: 'Computer Science'}
+        expect(flash[:alert]).to eq("Email existed")
         expect(response).to have_http_status(:redirect)
       end
     end

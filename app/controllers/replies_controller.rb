@@ -12,11 +12,11 @@ class RepliesController < ApplicationController
   end
 
   def create
+    @post = Post.find params[:post_id]
     if params[:content] == nil or params[:content] == ""
       flash[:alert] = "Content must be filled."
-      redirect_to new_post_reply_path
+      redirect_to new_post_reply_path(@post)
     else
-      @post = Post.find params[:post_id]
       @reply = @post.replies.build(:content => params[:content])
       @reply.user = current_user
       @reply.save
