@@ -27,7 +27,7 @@ Scenario: login and reply to a posts
   And I press "Send Reply"
   And I fill in "Content" with "Hi, this is a testing reply message"
   And I press "Send"
-  Then I should be on the replies page
+  Then I should be on the replies page for post subject "Too many A+"
   And I should see "Hi, this is a testing reply message"
 
 Scenario: login and reply to a posts, and edit the reply message
@@ -38,14 +38,14 @@ Scenario: login and reply to a posts, and edit the reply message
   And I fill in "password" with "yuankai1234"
   And I press "Login"
   Then I should be on the posts page
-  And I press "Detail"
+  When I go to the show page for subject "Too many A+"
   And I press "Send Reply"
   And I fill in "Content" with "Hi, this is my original reply message"
   And I press "Send"
-  Then I should be on the replies page
+  Then I should be on the replies page for post subject "Too many A+"
   And I should see "Hi, this is my original reply message"
   And I press "Edit"
   And I fill in "Content" with "Hi, this is a my edited reply message"
   And I press "Submit"
-  Then I should be on the replies page
+  Then I should be on the replies page for post subject "Too many A+"
   And I should see "Hi, this is a my edited reply message"

@@ -87,6 +87,13 @@ RSpec.describe "Posts", type: :request do
       expect(assigns(:replies)).to eq(@p1.replies.order(created_at: :desc))
       expect(assigns(:user_id_to_username)).to eq({@user1.id => @user1.username})
     end
+
+    it "returns index page if the current user is not authorized to view this post" do
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user2.id } }
+      get post_path(@p1)
+      expect(response).to redirect_to(posts_path)
+      expect(flash[:error]).to eq('unauthorized access!')
+    end
   end
 
   describe "GET /edit" do
@@ -100,7 +107,7 @@ RSpec.describe "Posts", type: :request do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user2.id } }
       get edit_post_path(@p1)
       expect(response).to redirect_to(posts_path)
-      expect(flash.now[:error]).to eq('unauthorized access!')
+      expect(flash[:error]).to eq('unauthorized access!')
     end
   end
 

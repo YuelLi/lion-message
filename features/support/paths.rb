@@ -20,7 +20,15 @@ module NavigationHelpers
     when /^the create post page$/ then new_post_path
     when /^logout$/ then '/logout'
     when /^the replies page$/ then '/posts/2/replies'
-
+    when /^the replies page for post subject "(.*)"$/ then
+      post = Post.where(subject: $1).take
+      '/posts/'+post.id.to_s+'/replies'
+    when /^the show page for subject "(.*)"$/ then
+      post = Post.where(subject: $1).take
+      post_path(post)
+    when /^the edit page for subject "(.*)"$/ then
+      post = Post.where(subject: $1).take
+      edit_post_path(post)
 
     # when /^the details page for "(.*)"$/ then
     #   movie_id = Movie.find_by(title: $1).id
