@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   def show
     id = params[:id]
     @post = Post.find(id)
-    if @post.user != current_user
+    if current_user.role = 'student' and @post.user != current_user or current_user.role = 'faculty' and @post.department != current_user.department
       flash[:error] = 'unauthorized access!'
       redirect_to posts_path
     end
