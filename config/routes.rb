@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # get 'posts/index'
   resources :users, only: [:new, :create]
   get 'user', to: 'users#show'
+  post 'user', to: 'users#update'
   get '/', to: 'sessions#welcome'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
