@@ -1,5 +1,6 @@
 # Lion Message
-It is a final project of COMSW4156 Spring 2021.
+It is a final project of COMSW4156 Spring 2021. \
+[Github Repository](https://github.com/YuelLi/lion-message)
 ## Team Members
 * Yuankai Xu yx2622
 * Yu Li yl4736
@@ -12,10 +13,14 @@ It is a final project of COMSW4156 Spring 2021.
       `bundle install --without production`
 3. Database
 
-      `rails db:migrate RAILS_ENV=development`
+      `bundle exec rake db:migrate:reset` \
+      `bundle exec rake db:seed`
+
+## Test Coverage
+Iteration 2: 100%
 
 ## User Stories
-All the cucumber files are under `lion-message/features`
+All the cucumber files are under `lion-message/features`. Examples:
 * If the user has not logged in, he can only access to login and signup page.
     * GET ```/users/new```: show the sign up page.
     * POST ```/users/create```: given the username and password, create a user account.
@@ -44,9 +49,25 @@ The whole folder `lion-message` is the source file of our Saas prototype.
 ## Reference
 * [Webpacker Installation](https://yarnpkg.com/en/docs/install).
 * [Authentication Guide with Ruby on Rails](https://levelup.gitconnected.com/simple-authentication-guide-with-ruby-on-rails-16a6255f0be8).
+* [Heroku Database](https://stackoverflow.com/questions/4820549/how-to-empty-a-heroku-database)
+* [Rails Database Command](https://stackoverflow.com/questions/10301794/difference-between-rake-dbmigrate-dbreset-and-dbschemaload)
+* [Nested Route in Rails](https://stackoverflow.com/questions/25219534/what-are-nested-routes-for-in-railss)
+* [Nested Route in Rails Official](https://guides.rubyonrails.org/routing.html)
+
+
+# Development Document
+
+These information are for team members only. Feel free to ignore!
+
+
+## Deployment Command
+1. Login to Heroku: `heroku login --interactive`.
+2. Push code to Heroku: `git push heroku master`.
+3. Drop db: `heroku pg:reset`
+4. Migration: `heroku run rake db:migrate`.
+5. Generate data from seed: `heroku run rake db:seed`
 
 ## Iteration 2
-
 
 ### User
 * User profile 
