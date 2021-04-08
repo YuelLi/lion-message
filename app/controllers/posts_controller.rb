@@ -51,11 +51,12 @@ class PostsController < ApplicationController
   def show
     id = params[:id]
     @post = Post.find(id)
-    if current_user.role = 'student' and @post.user != current_user or current_user.role = 'faculty' and @post.department != current_user.department
+    if (current_user.role == 'student' and @post.user != current_user) or (current_user.role == 'faculty' and @post.department != current_user.department)
       flash[:error] = 'unauthorized access!'
       redirect_to posts_path
     end
     @replies, @user_id_to_username = Post.usernames_by_reply(@post)
+    render(:partial => 'post', :object => [@post,@replies, @user_id_to_username]) if request.xhr?
   end
 
   def edit
