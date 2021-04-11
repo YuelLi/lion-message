@@ -19,13 +19,13 @@
           <tr class="bg-info">
             <th>Topic</th>
             <th>
-              <%= link_to "Department", posts_path({:post_content => @post_content, :sort => "department"}),id: "release_date_header",
+              <%= link_to "Department", posts_path({:filter_tag => params[:filter_tag], :filter_topic => params[:filter_topic],:post_content => @post_content, :sort => "department"}),id: "release_date_header",
                           class: (params[:sort]=='department'? 'text-warning': '')%>
             </th>
             <th>Subject</th>
             <th>Tag</th>
             <th>
-              <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
+              <%= link_to "Create time", posts_path({:filter_tag => params[:filter_tag], :filter_topic => params[:filter_topic],:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
                           class: (params[:sort]=='create_time'? 'text-warning': '')%>
             </th>
           </tr>
