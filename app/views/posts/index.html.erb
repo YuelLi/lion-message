@@ -8,45 +8,104 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
       <div class="panel panel-primary">
         <div class="panel-heading">
-        <% if current_user.role == "student" %>
-        <%= current_user.username %>'s Posts
-        <% else %>
-        <%= current_user.department %> Posts
-        <% end %>
+          <% if current_user.role == "student" %>
+            <%= current_user.username %>'s Posts
+          <% else %>
+            <%= current_user.department %> Posts
+          <% end %>
         </div>
         <table class="table table-striped">
           <thead>
-            <tr class="bg-info">
-              <th>Topic</th>
-              <th>
-                <%= link_to "Department", posts_path({:post_content => @post_content, :sort => "department"}),id: "release_date_header",
-                            class: (params[:sort]=='department'? 'text-warning': '')%>
-              </th>
-              <th>Subject</th>
-              <th>
-                <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
-                            class: (params[:sort]=='create_time'? 'text-warning': '')%>
-              </th>
-            </tr>
+          <tr class="bg-info">
+            <th>Topic</th>
+            <th>
+              <%= link_to "Department", posts_path({:post_content => @post_content, :sort => "department"}),id: "release_date_header",
+                          class: (params[:sort]=='department'? 'text-warning': '')%>
+            </th>
+            <th>Subject</th>
+            <th>
+              <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
+                          class: (params[:sort]=='create_time'? 'text-warning': '')%>
+            </th>
+          </tr>
           </thead>
-          <tbody>
-            <% @posts.each do |post| -%>
-              <tr>
-                <th><%= post.topic %></th>
-                <th><%= post.department %></th>
-                <th><%= post.subject %></th>
-                <th>
-                  <div style="float:left;"><%= post.created_at%></div>
-                  <%= button_to "Detail", post_path(post), method: :get, style: "float:right;" %>
-                </th>
-              </tr>
-            <% end %>
+          <% @posts.each do |post| -%>
+            <tr>
+              <td><%= post.topic %></td>
+              <td><%= post.department %></td>
+              <td><%= link_to post.subject, post_path(post),remote: true, class: "showReplies", id: "replies"+post.id.to_s %></td>
+              <td>
+                <div style="float:left;"><%= post.created_at%></div>
+                <%= button_to "Detail", post_path(post), method: :get, style: "float:right;" %>
+              </td>
+            </tr>
+<!--            <tr id="post<%#=post.id%>" ></tr>-->
+            <tr id="post<%= post.id %>" hidden>
+            </tr>
+          <% end %>
           </tbody>
         </table>
       </div>
       <% if current_user.role == "student" %>
-      <%= button_to "Create a new posts", new_post_path, method: :get, :class => 'btn btn-primary'%>
+        <%= button_to "Create a new posts", new_post_path, method: :get, :class => 'btn btn-primary'%>
       <% end %>
     </div>
   </div>
 </div>
+
+
+<script>
+    var DetailRelies = {
+        setup: function() {
+            // add hidden 'div' to end of page to display popup:
+            $('.showReplies').unbind('click').click(DetailRelies.getReplies);
+        }
+        ,getReplies: function() {
+            var replyTable = window.document.getElementById("post"+$(this).attr('id').substring(7))
+            if (replyTable.hasAttribute("hidden")){
+                $.ajax({type: 'GET',
+                    url: $(this).attr('href'),
+                    timeout: 5000,
+                    contentType: "application/json",
+                    success: DetailRelies.showReply,
+                    error: function(xhrObj, textStatus, exception) { alert(textStatus,);
+                        console.log(exception)}
+                    // 'success' and 'error' functions will be passed 3 args
+                });
+            }
+            else{
+                replyTable.setAttribute("hidden",true);
+            }
+            return(false);
+        }
+        ,showReply: function(data, requestStatus, xhrObject) {
+            // center a floater 1/2 as wide and 1/4 as tall as screen
+            console.log(data);
+            var post_id = data.post_id;
+            var replyTable=window.document.getElementById("post"+post_id);
+            var table_body = "";
+            data.replies.forEach(function(value, key, iterable) {
+                table_body+="<tr>\n"+"<td>"+data.id_name_dict[value.user_id]+"</td>\n" +
+                    "<td style=\"word-break:break-all;\">"+value["content"]+"</td>\n" +
+                    "<td>"+value["updated_at"]+"</td>\n" +
+                    "</tr>\n";
+            });
+            replyTable.innerHTML = ("              <td colspan=\"4\">\n" +
+                "                <table class=\"table table-striped\">\n" +
+                "                  <thead>\n" +
+                "                  <tr class=\"bg-info\">\n" +
+                "                    <th style=\"text-align: center;\">User ID</th>\n" +
+                "                    <th style=\"text-align: center;\">Content</th>\n" +
+                "                    <th style=\"text-align: center;\">Time</th>\n" +
+                table_body+
+                "                  </tbody>\n" +
+                "                </table>\n" +
+                "              </td>");
+            replyTable.removeAttribute("hidden");
+            // make the Close link in the hidden element work
+            // $('#closeReplies').click(DetailRelies.hideReplies);
+            return(false);  // prevent default link action
+        }
+    };
+    $(DetailRelies.setup);
+</script>

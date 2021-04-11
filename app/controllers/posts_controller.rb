@@ -56,7 +56,12 @@ class PostsController < ApplicationController
       redirect_to posts_path
     end
     @replies, @user_id_to_username = Post.usernames_by_reply(@post)
-    render(:partial => 'post', :object => [@post,@replies, @user_id_to_username]) if request.xhr?
+    if request.xhr?
+      respond_to do |format|
+        format.json {render json: {post_id: id,replies:@replies,id_name_dict:@user_id_to_username}}
+        format.html
+      end
+    end
   end
 
   def edit

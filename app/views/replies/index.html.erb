@@ -16,7 +16,7 @@
             <% @replies.each do |reply| %>
             <tr>
               <th> <%= @user_id_to_username[reply.user_id] %> </th>
-              <th> <%= reply.content %> </th>
+              <th style="word-break:break-all;"> <%= reply.content %> </th>
               <th> <%= reply.created_at %> </th>
               <th>
                 <% if current_user.id == reply.user_id %>
