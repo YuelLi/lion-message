@@ -19,4 +19,8 @@ class Post < ApplicationRecord
     return replies, user_id_to_username
   end
 
+  def self.filter_by_topic(post_list, filter_topic)
+    post_list.where(topic: filter_topic)
+  end
+
 end

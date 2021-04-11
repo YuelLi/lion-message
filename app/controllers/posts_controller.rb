@@ -23,6 +23,10 @@ class PostsController < ApplicationController
     else
       @posts = @posts.order(created_at: :desc)
     end
+    # filter by topic
+    if params[:filter_topic] != nil
+      @posts = Post.filter_by_topic(@posts, params[:filter_topic])
+    end
     @post_content = params[:post_content]
   end
 
