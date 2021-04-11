@@ -23,4 +23,8 @@ class Post < ApplicationRecord
     post_list.where(topic: filter_topic)
   end
 
+  def self.filter_by_tag(post_list, filter_tag)
+    post_list.where(tag: filter_tag)
+  end
+
 end

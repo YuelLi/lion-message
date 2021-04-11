@@ -18,14 +18,19 @@ class PostsController < ApplicationController
     if params[:post_content] != nil && params[:post_content] != ""
       @posts = Post.like_search(@posts,params[:post_content])
     end
+    # filter by topic
+    if params[:filter_topic] != nil && params[:filter_topic] != ""
+      @posts = Post.filter_by_topic(@posts, params[:filter_topic])
+    end
+    # filter by tag
+    if params[:filter_tag] != nil && params[:filter_tag] != ""
+      @posts = Post.filter_by_tag(@posts, params[:filter_tag])
+    end
+    # sort
     if params[:sort]=='department'
       @posts = @posts.order(:department, created_at: :desc)
     else
       @posts = @posts.order(created_at: :desc)
-    end
-    # filter by topic
-    if params[:filter_topic] != nil
-      @posts = Post.filter_by_topic(@posts, params[:filter_topic])
     end
     @post_content = params[:post_content]
   end
@@ -47,7 +52,7 @@ class PostsController < ApplicationController
     else
       user = User.find_by(id: session[:user_id])
       user.posts.create(:topic=>params[:topic],:department=>params[:department],
-                        :subject=>params[:subject],:body=>params[:body],:tag => "Student created a post")
+                        :subject=>params[:subject],:body=>params[:body],:tag => "Post created")
       redirect_to posts_path
     end
   end
@@ -86,7 +91,7 @@ class PostsController < ApplicationController
        flash[:alert] = "Body must be filled."
        redirect_to edit_post_path(@post)
     else
-      @post.update(body:params[:body])
+      @post.update(body:params[:body],tag:"Post content updated")
       redirect_to post_path(@post)
     end
   end
