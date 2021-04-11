@@ -38,15 +38,16 @@
             <li><%= link_to 'Posts', posts_path %></li>
           <%end%>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter By Tags<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter By Topics<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><%= link_to 'All', posts_path %></li>
+              <li><%= link_to 'Course', posts_path(:filter_topic => 'Course') %></li>
+              <li><%= link_to 'Finance', posts_path(:filter_topic => 'Finance') %></li>
+              <li><%= link_to 'Visa', posts_path(:filter_topic => 'Visa') %></li>
+              <li><%= link_to 'Dining', posts_path(:filter_topic => 'Dining') %></li>
+              <li><%= link_to 'Housing', posts_path(:filter_topic => 'Housing') %></li>
+              <li><%= link_to 'Health', posts_path(:filter_topic => 'Health') %></li>
+              <li><%= link_to 'Other', posts_path(:filter_topic => 'Other') %></li>
             </ul>
           </li>
         </ul>
