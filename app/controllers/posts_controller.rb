@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     else
       user = User.find_by(id: session[:user_id])
       user.posts.create(:topic=>params[:topic],:department=>params[:department],
-                        :subject=>params[:subject],:body=>params[:body])
+                        :subject=>params[:subject],:body=>params[:body],:tag => "Student created a post")
       redirect_to posts_path
     end
   end
@@ -70,14 +70,17 @@ class PostsController < ApplicationController
     if @post.user != current_user
       flash[:error] = 'unauthorized access!'
       redirect_to posts_path
-    end 
+    end
   end
 
   def update
     @post = Post.find params[:id]
-    if params[:body] == nil or params[:body] == ""
-      flash[:alert] = "Body must be filled."
-      redirect_to edit_post_path(@post)
+    if params[:tag] != nil and params[:tag] != ""
+      @post.update(tag:params[:tag])
+      redirect_to post_path(@post)
+    elsif params[:body] == nil or params[:body] == ""
+       flash[:alert] = "Body must be filled."
+       redirect_to edit_post_path(@post)
     else
       @post.update(body:params[:body])
       redirect_to post_path(@post)
@@ -86,4 +89,5 @@ class PostsController < ApplicationController
 
   def delete
   end
+
 end

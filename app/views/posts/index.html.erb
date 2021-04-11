@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 80%">
   <% if flash[:error] %>
     <div class="alert alert-danger"  style="text-align: center;">
       <span class="error"><%= flash[:error] %></span>
@@ -14,7 +14,7 @@
             <%= current_user.department %> Posts
           <% end %>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" >
           <thead>
           <tr class="bg-info">
             <th>Topic</th>
@@ -23,6 +23,7 @@
                           class: (params[:sort]=='department'? 'text-warning': '')%>
             </th>
             <th>Subject</th>
+            <th>Tag</th>
             <th>
               <%= link_to "Create time", posts_path({:post_content => @post_content, :sort => "create_time"}),id: "release_date_header",
                           class: (params[:sort]=='create_time'? 'text-warning': '')%>
@@ -34,6 +35,7 @@
               <td><%= post.topic %></td>
               <td><%= post.department %></td>
               <td><%= link_to post.subject, post_path(post),remote: true, class: "showReplies", id: "replies"+post.id.to_s %></td>
+              <td><%= post.tag %></td>
               <td>
                 <div style="float:left;"><%= post.created_at%></div>
                 <%= button_to "Detail", post_path(post), method: :get, style: "float:right;" %>
@@ -90,7 +92,7 @@
                     "<td>"+value["updated_at"]+"</td>\n" +
                     "</tr>\n";
             });
-            replyTable.innerHTML = ("              <td colspan=\"4\">\n" +
+            replyTable.innerHTML = ("              <td colspan=\"5\">\n" +
                 "                <table class=\"table table-striped\">\n" +
                 "                  <thead>\n" +
                 "                  <tr class=\"bg-info\">\n" +
