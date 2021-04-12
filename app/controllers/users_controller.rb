@@ -17,6 +17,7 @@ skip_before_action :authorized, only: [:new, :create]
         @user.role= 'student'
         @user.save
         session[:user_id] = @user.id
+        NotificationMailer.with(user: @user).new_user_email.deliver_later
         redirect_to '/welcome'
       end
     rescue ActiveRecord::RecordNotUnique
