@@ -21,6 +21,11 @@ class RepliesController < ApplicationController
       @reply.user = current_user
       @reply.save
       NotificationMailer.with(reply: @reply, post: @post).new_reply_email.deliver_later
+      if current_user.role == 'faculty'
+        @post.update(tag:"Faculty made a reply")
+      else
+        @post.update(tag:"Student made a reply")
+      end
       redirect_to post_replies_path(@post)
     end
   end
@@ -45,6 +50,11 @@ class RepliesController < ApplicationController
       redirect_to edit_post_reply_path(@post, @reply)
     else
       @reply.update(content: params[:content])
+      if current_user.role == 'faculty'
+        @post.update(tag:"Faculty updated a reply")
+      else
+        @post.update(tag:"Student updated a reply")
+      end
       redirect_to post_replies_path(@post)
     end
   end

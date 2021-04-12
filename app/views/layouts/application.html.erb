@@ -1,88 +1,118 @@
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script>
-  $(document).ready(function(){
-     $('.dropdown-toggle').dropdown()
-  });
-  </script>
-  <head>
-    <meta charset="UTF-8">
-    <title>Lion Message</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
+<head>
+  <meta charset="UTF-8">
+  <title>Lion Message</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
 
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'Lion Message', '/', :class => "navbar-brand" %>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to 'Lion Message', '/', :class => "navbar-brand" %>
+      </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
           <% if current_page?(:controller => 'posts', :action => 'index') %>
             <li class="active"><a href="#">Posts<span class="sr-only">(current)</span></a></li>
-          <%else%>
+          <% else %>
             <li><%= link_to 'Posts', posts_path %></li>
-          <%end%>
+          <% end %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter By Tags<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter
+              By Topics<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><%= link_to 'All', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag]) %></li>
+              <li><%= link_to 'Course', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Course') %></li>
+              <li><%= link_to 'Finance', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Finance') %></li>
+              <li><%= link_to 'Visa', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Visa') %></li>
+              <li><%= link_to 'Dining', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Dining') %></li>
+              <li><%= link_to 'Housing', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Housing') %></li>
+              <li><%= link_to 'Health', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Health') %></li>
+              <li><%= link_to 'Other', posts_path(:post_content => params[:post_content], :filter_tag => params[:filter_tag], :filter_topic => 'Other') %></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter
+              By Tags<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'All', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic]) %></li>
+              <li><%= link_to 'Post created', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Post created') %></li>
+              <li><%= link_to 'Post content updated', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Post content updated') %></li>
+              <li><%= link_to 'Student made a reply', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Student made a reply') %></li>
+              <li><%= link_to 'Faculty made a reply', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Faculty made a reply') %></li>
+              <li><%= link_to 'Faculty updated a reply', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Faculty updated a reply') %></li>
+              <li><%= link_to 'Student updated a reply', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Student updated a reply') %></li>
+              <li><%= link_to 'Reply in 1 day', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Reply in 1 day') %></li>
+              <li><%= link_to 'Reply in 3 days', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Reply in 3 days') %></li>
+              <li><%= link_to 'Reply in 1 week', posts_path(:post_content => params[:post_content], :filter_topic => params[:filter_topic], :filter_tag => 'Reply in 1 week') %></li>
             </ul>
           </li>
         </ul>
 
-        <%= form_tag posts_path(:post_content => :post_content),:method => :get, :class => "navbar-form navbar-left" do %>
+        <%#= form_tag :class => "navbar-form navbar-left" do %>
+<!--          <div class="form-group">-->
+            <%#= text_field_tag "search_content",:aaa, class: "form-control", placeholder: "Your posts" %>
+<!--          </div>-->
+          <%#= link_to  "Search",posts_path(:filter_tag => params[:filter_tag], :filter_topic => params[:filter_topic],:post_content => :aaa), :method => :get, :class => "btn btn-default" %>
+        <%# end %>
+        <%= form_tag posts_path,:method => :get, :class => "navbar-form navbar-left" do %>
           <div class="form-group">
-            <%= text_field_tag :post_content, "" , class: "form-control", placeholder: "Your posts"%>
+            <% if params[:filter_topic] %>
+              <%= hidden_field_tag  :filter_topic, params[:filter_topic] %>
+            <% end %>
+            <% if params[:filter_tag] %>
+              <%= hidden_field_tag  :filter_tag, params[:filter_tag] %>
+            <% end %>
+            <%= text_field_tag :post_content, params[:post_content] , class: "form-control", placeholder: "Your posts"%>
           </div>
           <%= submit_tag "Search", :class => "btn btn-default" %>
         <%end%>
-<!--        <form class="navbar-form navbar-left">-->
-<!--          <div class="form-group">-->
-<!--            <input type="text" class="form-control" placeholder="Your posts">-->
-<!--          </div>-->
-<!--          posts_path({:sort => "department"})-->
-<!--          <button type="submit" class="btn btn-default">Search</button>-->
-<!--        </form>-->
+        <!--        <form class="navbar-form navbar-left">-->
+        <!--          <div class="form-group">-->
+        <!--            <input type="text" class="form-control" placeholder="Your posts">-->
+        <!--          </div>-->
+        <!--          posts_path({:sort => "department"})-->
+        <!--          <button type="submit" class="btn btn-default">Search</button>-->
+        <!--        </form>-->
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
             <li><a href="/user">Hi, <%= current_user.username %></a></li>
             <li><%= link_to 'Logout', '/logout' %></li>
-          <%else%>
+          <% else %>
             <li><%= link_to 'Sign Up', '/users/new' %></li>
             <li><%= link_to 'Login', '/login' %></li>
-          <%end%>
+          <% end %>
         </ul>
 
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
-  </head>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<%= yield %>
+</body>
 </html>
 

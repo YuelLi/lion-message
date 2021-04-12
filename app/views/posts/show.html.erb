@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 80%">
   <div class="row align-items-center">
     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
       <div class="panel panel-primary">
@@ -9,6 +9,7 @@
             <th>Topic</th>
             <th>Department</th>
             <th>Subject</th>
+            <th>Tag</th>
             <th>Create time </th>
           </tr>
           </thead>
@@ -17,6 +18,7 @@
               <th><%= @post.topic %></th>
               <th><%= @post.department %></th>
               <th><%= @post.subject %></th>
+              <th><%= @post.tag %>
               <th><%= @post.created_at %>
               </th>
             </tr>
@@ -30,7 +32,7 @@
           </thead>
           <tbody>
           <tr>
-            <th style="word-break:break-all;"><%= @post.body %></th>
+            <th style="word-break:break-all; white-space: pre;"><%= @post.body %></th>
           </tr>
           </tbody>
         </table>
@@ -57,13 +59,16 @@
             <% @replies.each do |reply| %>
             <tr>
               <th> <%= @user_id_to_username[reply.user_id] %> </th>
-              <th> <%= reply.content %> </th>
+              <th style="word-break:break-all;"> <%= reply.content %> </th>
               <th> <%= reply.created_at %> </th>
             </tr>
             <% end %>
           </tbody>
         </table>
       </div>
+      <% if current_user.role == "faculty" %>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: left">Add tag</button>
+      <% end %>
       <%= button_to "Send Reply", new_post_reply_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
       <%= button_to "Replies Detail", post_replies_path(@post), method: :get,:style => "float: left;", :class => 'btn btn-primary'%>
       <% if current_user.role == 'student' %>
@@ -71,5 +76,29 @@
       <% end %>
       <%= button_to "Back", posts_path, method: :get, :style => "margin-left: 20px;", :class => 'btn btn-primary'%>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Add Tag</h4>
+          </div>
+          <div class="modal-body">Please choose a tag:
+            <div><br></div>
+            <div style="display: flex;
+                justify-content: space-between;">
+              <%= button_to "Reply in 1 day", post_path(@post),:method => :put, params:{tag:"Reply in 1 day"}, :class => "btn btn-primary" %>
+              <%= button_to "Reply in 3 days", post_path(@post),:method => :put, params:{tag:"Reply in 3 days"}, :class => "btn btn-primary" %>
+              <%= button_to "Reply in 1 week", post_path(@post),:method => :put, params:{tag:"Reply in 1 week"}, :class => "btn btn-primary" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
+    </div>
+  </div>
   </div>
 </div>
+

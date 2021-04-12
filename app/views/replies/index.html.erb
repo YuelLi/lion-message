@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 80%">
   <div class="row align-items-center">
     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
       <div class="panel panel-primary">
@@ -16,7 +16,7 @@
             <% @replies.each do |reply| %>
             <tr>
               <th> <%= @user_id_to_username[reply.user_id] %> </th>
-              <th> <%= reply.content %> </th>
+              <th style="word-break:break-all;"> <%= reply.content %> </th>
               <th> <%= reply.created_at %> </th>
               <th>
                 <% if current_user.id == reply.user_id %>
