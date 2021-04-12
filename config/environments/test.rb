@@ -42,6 +42,17 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => "lionmessage2021@gmail.com",
+    :password             => "coms-4156",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr

@@ -20,6 +20,7 @@ class RepliesController < ApplicationController
       @reply = @post.replies.build(:content => params[:content])
       @reply.user = current_user
       @reply.save
+      NotificationMailer.with(reply: @reply, post: @post).new_reply_email.deliver_later
       redirect_to post_replies_path(@post)
     end
   end
