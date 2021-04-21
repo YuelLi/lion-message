@@ -1,6 +1,8 @@
 # Lion Message
 It is a final project of COMSW4156 Spring 2021. \
-[Github Repository](https://github.com/YuelLi/lion-message)
+[Github Repository](https://github.com/YuelLi/lion-message)\
+[Demo Video](https://youtu.be/2hTezu5oy_k)\
+[Heroku Deployment Link](https://dry-dawn-64360.herokuapp.com/)
 ## Team Members
 * Yuankai Xu yx2622
 * Yu Li yl4736
