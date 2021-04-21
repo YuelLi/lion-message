@@ -35,11 +35,21 @@ RSpec.describe "Reply", type: :request do
   end
 
   describe "Post /create" do
-    it "create a new reply" do
+    it "student create a new reply" do
       previous_count = Reply.count()
       post post_replies_path(@p1), params:{:content => "test_content"}
       expect(response).to redirect_to(post_replies_path(@p1))
       expect(Reply.count()).to eq(previous_count+1)
+      expect(Post.find(@p1.id).tag).to eq("Student made a reply")
+    end
+
+    it "faculty create a new reply" do
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user2.id } }
+      previous_count = Reply.count()
+      post post_replies_path(@p1), params:{:content => "test_content"}
+      expect(response).to redirect_to(post_replies_path(@p1))
+      expect(Reply.count()).to eq(previous_count+1)
+      expect(Post.find(@p1.id).tag).to eq("Faculty made a reply")
     end
 
     it "should not create a new reply with empty content" do
@@ -61,9 +71,18 @@ RSpec.describe "Reply", type: :request do
   end
 
   describe "PUT /update" do
-    it "update a reply with non-empty content" do
+    it "student update a reply with non-empty content" do
       put post_reply_path(@p1,@r1), params: {:content => "updated content"}
       expect(response).to redirect_to(post_replies_path(@p1))
+      expect(Post.find(@p1.id).tag).to eq("Student updated a reply")
+      expect(Reply.find(@r1.id).content).to eq("updated content")
+    end
+
+    it "faculty update a reply with non-empty content" do
+      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @user2.id } }
+      put post_reply_path(@p1,@r1), params: {:content => "updated content"}
+      expect(response).to redirect_to(post_replies_path(@p1))
+      expect(Post.find(@p1.id).tag).to eq("Faculty updated a reply")
       expect(Reply.find(@r1.id).content).to eq("updated content")
     end
 

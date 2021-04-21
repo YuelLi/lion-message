@@ -68,7 +68,7 @@ class PostsController < ApplicationController
     if request.xhr?
       respond_to do |format|
         format.json {render json: {post_id: id,replies:@replies,id_name_dict:@user_id_to_username}}
-        format.html
+        # format.html
       end
     end
   end
