@@ -18,6 +18,20 @@ It is a final project of COMSW4156 Spring 2021. \
       `bundle exec rake db:migrate:reset` \
       `bundle exec rake db:seed`
 
+## Product Testing Instructions
+In our Heroku deployment, you can use:
+```
+username: minhezhangmz2864
+password: 123456
+```
+to test student account features,
+```
+username: cs1
+password: 123456
+```
+to test faulty account features.
+
+Both accounts have some existing data.
 ## Test Coverage
 Iteration 2: 100%
 
