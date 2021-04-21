@@ -44,6 +44,15 @@ The whole folder `lion-message` is the source file of our Saas prototype.
 * Login
 * Logout
 * Create posts
+* Edit posts
+* Reply to posts
+* Edit reply
+* Search posts
+* Filter posts by topic
+* Filter posts by tag
+* Add tag to post (faculty)
+* Sort posts by department
+* Sort post by created time
 
 ## Heroku Deployment Link
 [Try Lion Message!!!](http://dry-dawn-64360.herokuapp.com)
