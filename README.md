@@ -29,7 +29,7 @@ to test student account features,
 username: cs1
 password: 123456
 ```
-to test faulty account features.
+to test faculty account features.
 
 Both accounts have some existing data.
 ## Test Coverage
