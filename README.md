@@ -98,13 +98,11 @@ These information are for team members only. Feel free to ignore!
 * View (Ajax or new page)
 * Controller
 
-### Test
+### Test Ongoing
 
 ## Iteration 3
 
 ### Notification
 * Updating email to students
 
-### Statistic
-
-### Evaluation
+### Test Finished
