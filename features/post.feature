@@ -10,13 +10,14 @@ Background: having users and posts in database
   | Minhe    | minhe1234       | student |  Computer Science     |
   | Yuankai  | yuankai1234     | student |  Computer Science     |
   | A        | 123456          | faculty |  Computer Science     |
+  | B        | 123456          | faculty |  Columbia Finance     |
 
   Given the following posts exist:
-  | topic    | subject        | body            | department              | user_id |
-  | dining   | More sushi     | More sushi.     | Computer Science        | 1       |
-  | finance  | Too poor       | I am so poor!   | Columbia Finance        | 1       |
-  | academic | Too many A+    | Too many A+.    | Electrical Engineering  | 2       |
-  | housing  | Rats invation  | Rats invation.  | Computer Science        | 2       |
+  | topic    | subject        | body            | department              | user_id | tag            |
+  | Dining   | More sushi     | More sushi.     | Computer Science        | 1       | Post created   |
+  | Finance  | Too poor       | I am so poor!   | Columbia Finance        | 1       | Post created   |
+  | Course   | Too many A+    | Too many A+.    | Electrical Engineering  | 2       | Post created   |
+  | Housing  | Rats invation  | Rats invation.  | Computer Science        | 2       | Reply in 1 day |
 
   Given the following departments exist:
   | name                    |
@@ -131,3 +132,59 @@ Scenario: login and edit a post body
   And I press "Submit"
   Then I should be on the show page for subject "Too many A+"
   And I should see "Body edited!"
+
+Scenario: filter by topics
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "Yuankai"
+  And I fill in "password" with "yuankai1234"
+  And I press "Login"
+  Then I should be on the posts page
+  And I should see "Too many A+"
+  And I should see "Rats invation"
+  And I filter by topic "Course"
+  Then I should see "Too many A+"
+  And I should not see "Rats invation"
+
+Scenario: filter by tags
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "Yuankai"
+  And I fill in "password" with "yuankai1234"
+  And I press "Login"
+  Then I should be on the posts page
+  And I should see "Too many A+"
+  And I should see "Rats invation"
+  And I filter by tag "Post created"
+  Then I should see "Too many A+"
+  And I should not see "Rats invation"
+
+Scenario: As a faculty, login and add tag
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "B"
+  And I fill in "password" with "123456"
+  And I press "Login"
+  Then I should be on the posts page
+  And I should see "Too poor"
+  Then I press "Detail"
+  And I press "Add tag"
+  And I press "Reply in 1 day"
+  Then I should see "Reply in 1 day"
+
+Scenario: As a faculty, login and add tag
+  Given I am on the home page
+  And I press "Login"
+  Then I should be on the login page
+  When I fill in "username" with "B"
+  And I fill in "password" with "123456"
+  And I press "Login"
+  Then I should be on the posts page
+  And I should see "Too poor"
+  Then I press "Detail"
+  And I press "Add tag"
+  And I press "Reply in 1 day"
+  Then I should see "Reply in 1 day"

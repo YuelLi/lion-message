@@ -83,3 +83,13 @@ end
 Given /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
+
+Then /^I filter by topic "([^"]*)"$/ do |topic|
+  has_link?("Filter By Topics")
+  visit "/posts?filter_topic=" + topic
+end
+
+Then /^I filter by tag "([^"]*)"$/ do |topic|
+  has_link?("Filter By Topics")
+  visit "/posts?filter_tag=" + topic
+end

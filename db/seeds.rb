@@ -34,6 +34,20 @@ users = [{
             :email => 'ee1@columbia.edu',
             :role => 'faculty',
             :department => 'Electrical Engineering'
+          },
+          {
+            :username => 'amberlee',
+            :password => '123456',
+            :email => 'amberlee@columbia.edu',
+            :role => 'faculty',
+            :department => 'Computer Science'
+          },
+          {
+            :username => 'minhezhangmz2864',
+            :password => '123456',
+            :email => 'mz2864@columbia.edu',
+            :role => 'student',
+            :department => 'Computer Science'
           }
         ]
 
@@ -49,4 +63,5 @@ departments = [{:name => "Computer Science"},
 departments.each do |department|
   Department.create!(department)
 end
+
 
